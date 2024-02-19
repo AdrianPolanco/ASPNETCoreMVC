@@ -1,0 +1,41 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+    int index = 0;
+}
+
+<h1>Index</h1>
+<h2>@ViewBag.Message: @ViewBag.CustomersCount</h2>
+<!--ASP.NET Core MVC 7 uses Bootstrap 5 as styles framework-->
+<h3>Id of the current user: @ViewBag.Id</h3>
+<div class="container">
+@foreach(Customer customer in ViewBag.Customers)
+{
+    /*@foreach(var item in ViewData["Estados"] as List<Customer>){}*/
+        
+        //Rendering cards for each customer in my list of customers
+    <div class="card">
+        <div class="card-body">
+            <p>Name: @customer.Name</p>
+            <p>Amount: @customer.Amount</p>
+                <p>
+                    Status:
+                    @if (customer.Aprobado)
+                    {
+                    <span class="badge bg-success">Aprobado</span>
+                    }
+                    else
+                    {
+                      <span class="badge bg-danger">Reprobado</span>
+                        }
+                    </p>
+            </div>
+        </div>
+        
+    }
+
+    @{
+        //Using the Keep method to keep the data accross multiple actions or requests, so the Token TempData is not null when accesing to the Temp Action
+        TempData.Keep("Token");
+    }
+</div>

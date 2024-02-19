@@ -1,0 +1,37 @@
+﻿
+@{
+    ViewData["Title"] = "Temp";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Index</h1>
+<h2>@TempData["Message"]</h2>
+<h3>Quantity of users registered: @TempData["CustomersQuantity"]</h3>
+<!--ASP.NET Core MVC 7 uses Bootstrap 5 as styles framework-->
+<div class="container">
+    @if(TempData["Customers"] != null){ @foreach (Customer customer in @TempData["Customers"] as List<Customer>)
+    {
+        /*@foreach(var item in ViewData["Estados"] as List<Customer>){}*/
+
+        //Rendering cards for each customer in my list of customers
+        <div class="card">
+            <div class="card-body">
+                <p>Name: @customer.Name</p>
+                <p>Amount: @customer.Amount</p>
+                <p>
+                    Status:
+                    @if (customer.Aprobado)
+                    {
+                        <span class="badge bg-success">Aprobado</span>
+                    }
+                    else
+                    {
+                        <span class="badge bg-danger">Reprobado</span>
+                    }
+                </p>
+            </div>
+        </div>
+
+    }}
+   
+</div>
